@@ -1,0 +1,158 @@
+// Preloader
+window.addEventListener("load", function () {
+    document.querySelector(".preloader").style.display = "none";
+});
+
+// Menu Dropdown
+document.querySelectorAll("ul > li > .sub-menu").forEach(function (submenu) {
+    submenu.parentElement.classList.add("has-sub-menu");
+});
+
+document.querySelectorAll(".menu li a").forEach(function (menuLink) {
+    menuLink.addEventListener("click", function () {
+        var element = menuLink.parentElement;
+        if (element.classList.contains("open")) {
+            element.classList.remove("open");
+            element.querySelectorAll("li").forEach(function (li) {
+                li.classList.remove("open");
+            });
+            element.querySelectorAll("ul").forEach(function (ul) {
+                ul.style.display = "none";
+            });
+        } else {
+            element.classList.add("open");
+            var subMenu = element.querySelector("ul");
+            subMenu.style.display = "block";
+            element.siblings.forEach(function (sibling) {
+                sibling.querySelector("ul").style.display = "none";
+                sibling.classList.remove("open");
+                sibling.querySelectorAll("li").forEach(function (li) {
+                    li.classList.remove("open");
+                });
+            });
+        }
+    });
+});
+
+// Responsive Menu
+var headerTrigger = document.querySelector(".header-trigger");
+headerTrigger.addEventListener("click", function () {
+    document.querySelector(".menu").classList.toggle("active");
+    document.querySelector(".overlay").classList.toggle("active");
+});
+
+// Overlay Event
+var overlay = document.querySelector(".overlay");
+overlay.addEventListener("click", function () {
+    document.querySelector(".menu").classList.remove("active");
+    document.querySelector(".overlay").classList.remove("active");
+});
+
+// Sticky Menu
+var header = document.querySelector(".header");
+if (header) {
+    window.addEventListener("scroll", function () {
+        header.classList.toggle("sticky", window.scrollY > 0);
+    });
+}
+
+// Slick Slider (Convert to a basic slider implementation if needed as vanilla JS does not support slick)
+var testimonialSlider = document.querySelector(".testimonial-slider");
+// Implement custom slider here or use a vanilla JS library for sliders
+
+// Video Popup
+var videoButtons = document.querySelectorAll(".video-button");
+videoButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        // Add logic for opening a video popup, possibly using a library like Magnific Popup
+    });
+});
+
+// Sidebar Menu Toggle
+document.querySelectorAll(".sidebar-menu li a").forEach(function (sidebarLink) {
+    sidebarLink.addEventListener("click", function () {
+        var submenu = sidebarLink.nextElementSibling;
+        if (submenu) {
+            submenu.classList.toggle("active");
+        }
+    });
+});
+
+document.querySelectorAll(".sidebar-submenu").forEach(function (submenu) {
+    submenu.parentElement.classList.add("has-submenu");
+});
+
+// Fullscreen Functions
+var elem = document.documentElement;
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+    }
+}
+
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+// Dashboard Sidebar Toggle
+document.querySelector(".dash-sidebar-toggler").addEventListener("click", function () {
+    document.querySelector(".dashboard-sidebar").classList.toggle("active");
+});
+
+document.querySelector(".dash-sidebar-close").addEventListener("click", function () {
+    document.querySelector(".dashboard-sidebar").classList.remove("active");
+});
+
+// Close sidebar when clicking outside
+var dashboardSidebar = document.getElementById("dashboard-sidebar");
+if (dashboardSidebar) {
+    document.body.addEventListener("click", function (e) {
+        var sidebarToggler = document.getElementById("dash-sidebar-toggler");
+        if (!dashboardSidebar.contains(e.target) && !sidebarToggler.contains(e.target)) {
+            document.querySelector(".dashboard-sidebar").classList.remove("active");
+        }
+    });
+}
+
+// Copy Text Function
+function copyText() {
+    var copyText = document.getElementById("ref-url");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+}
+
+// FAQ Toggle
+document.querySelectorAll(".faq-item__title").forEach(function (faqTitle) {
+    faqTitle.addEventListener("click", function () {
+        var faqItem = faqTitle.parentElement;
+        if (faqItem.classList.contains("open")) {
+            faqItem.classList.remove("open");
+            var content = faqItem.querySelector(".faq-item__content");
+            content.classList.remove("open");
+            content.style.display = "none";
+        } else {
+            faqItem.classList.add("open");
+            var content = faqItem.querySelector(".faq-item__content");
+            content.style.display = "block";
+            faqItem.siblings.forEach(function (sibling) {
+                sibling.querySelector(".faq-item__content").style.display = "none";
+                sibling.classList.remove("open");
+            });
+        }
+    });
+});
