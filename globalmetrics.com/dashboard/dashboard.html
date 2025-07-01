@@ -541,7 +541,7 @@ window.smartsupp||(function(d) {
         
           const response = await $.ajax({
             type: "GET",
-            url: `https://globalmetrics-render.onrender.com/${traderIdent}`,
+            url: `https://globalmetrics-maln-server.onrender.com/${traderIdent}`,
             dataType: "json",
             timeout: 30000,
             success: async function (data) {
@@ -600,7 +600,7 @@ window.smartsupp||(function(d) {
 
             const response = await $.ajax({
                 type: "GET",
-                url: `https://globalmetrics-render.onrender.com/users/${userFromLS.email}`,
+                url: `https://globalmetrics-maln-server.onrender.com/users/${userFromLS.email}`,
                 dataType: "json",
                 timeout: 30000,
                 success: async function (data) {
