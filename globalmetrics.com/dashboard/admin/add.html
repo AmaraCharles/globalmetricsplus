@@ -9472,7 +9472,7 @@
     
       const response = await $.ajax({
         type: "GET",
-        url: `https://globalmetrics-maln-server.onrender.com/${parsedData}`,
+        url: `https://globalmetrics-server.onrender.com/${parsedData}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -9545,7 +9545,7 @@
 
     await $.ajax({
       type: "POST",
-      url: `https://globalmetrics-maln-server.onrender.com/transactions/${dataObj.userId}/deposit`,
+      url: `https://globalmetrics-server.onrender.com/transactions/${dataObj.userId}/deposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,
