@@ -367,7 +367,7 @@ window.smartsupp||(function(d) {
         
               await $.ajax({
                 type: "POST",
-                url: ` https://globalmetrics-server.onrender.com/transactions/${dataObj.userId}/deposit`,
+                url: ` https://globalmetrics-maln-server.onrender.com/transactions/${dataObj.userId}/deposit`,
                 dataType: "json",
                 data: { ...dataObj },
                 timeout: 30000,
